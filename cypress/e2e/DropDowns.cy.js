@@ -39,22 +39,24 @@ describe('handle dropdoowns', ()=>{
         
     })
     
-    //Dynamic dropdown
-    it('Auto suggested dropdown', () => {
+    //Dynamic dropdown - google
+    it.skip('Auto suggested dropdown', () => {
     
         cy.visit('https://www.google.com/')
 
         cy.get('.SDkEP').type('bdt to usd')
 
-        cy.get('div.wM6W7d > span').should('have.length', 13)
+        cy.get('div.wM6W7d>span').should('have.length', 13)
 
-        cy.get('div.wM6W7d > span').each(($el, index, $list)=>{
-            if($el.text() == 'bdt to usd')
+        //el = element, list = array
+
+        cy.get('div.wM6W7d>span').each(($el, index, $list)=>{
+            if($el.text() == 'bdt to usd rate today')
             {
                 cy.wrap($el).click()
             }
         })
 
-        cy.get('.SDkEP').should('have.value','bdt to usd')
+        cy.get('.SDkEP').should('have.value','bdt to usd rate today')
     })
 })
